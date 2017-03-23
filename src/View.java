@@ -1,5 +1,6 @@
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,8 +25,8 @@ public class View extends javax.swing.JFrame {
         po = new Population("UK");
         //Person pe = new Person();
         loadPersons = Person.loadPersons("people.txt");
-
         getPerson();
+        previous.setEnabled(false);
     }
 
     /**
@@ -42,9 +43,13 @@ public class View extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         last_name = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        birth_town = new javax.swing.JTextField();
-        birth_year = new javax.swing.JTextField();
+        birth_place = new javax.swing.JTextField();
+        birth_country = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        edit_last_name = new javax.swing.JButton();
+        edit_first_name = new javax.swing.JButton();
+        edit_birth_place = new javax.swing.JButton();
+        edit_birth_country = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -53,16 +58,45 @@ public class View extends javax.swing.JFrame {
         previous = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Exercise 2.3");
 
         jLabel1.setText("First name:");
 
         jLabel2.setText("Last name:");
 
-        jLabel3.setText("Birth town:");
+        jLabel3.setText("Birth place:");
 
-        birth_town.setToolTipText("");
+        birth_place.setToolTipText("");
 
-        jLabel4.setText("Birth year:");
+        jLabel4.setText("Birth country:");
+
+        edit_last_name.setText("Edit...");
+        edit_last_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_last_nameActionPerformed(evt);
+            }
+        });
+
+        edit_first_name.setText("Edit...");
+        edit_first_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_first_nameActionPerformed(evt);
+            }
+        });
+
+        edit_birth_place.setText("Edit...");
+        edit_birth_place.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_birth_placeActionPerformed(evt);
+            }
+        });
+
+        edit_birth_country.setText("Edit...");
+        edit_birth_country.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_birth_countryActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -104,28 +138,31 @@ public class View extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(first_name, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(birth_year, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(birth_town, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(first_name, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(birth_country, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(birth_place, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(edit_last_name)
+                    .addComponent(edit_first_name)
+                    .addComponent(edit_birth_place)
+                    .addComponent(edit_birth_country))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,20 +171,24 @@ public class View extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(first_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(first_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit_first_name))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit_last_name))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(birth_town, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(birth_place, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit_birth_place))
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(birth_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(birth_country, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit_birth_country))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,24 +199,78 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-
+        currentIndex++;
         if (currentIndex == loadPersons.size() - 1) {
-            currentIndex = 0;
+            next.setEnabled(false);
         } else {
-            currentIndex++;
+            next.setEnabled(true);
         }
         getPerson();
+//        if (currentIndex == loadPersons.size() - 1) {
+//            currentIndex = 0;
+//        } else {
+//            currentIndex++;
+//        }
+//        getPerson();
     }//GEN-LAST:event_nextActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
-
+        currentIndex--;
         if (currentIndex == 0) {
-            currentIndex = loadPersons.size() - 1;
+            previous.setEnabled(false);
         } else {
-            currentIndex--;
+            previous.setEnabled(true);
         }
-        getPerson();
+
+//        if (currentIndex == 0) {
+//            currentIndex = loadPersons.size() - 1;
+//        } else {
+//            currentIndex--;
+//        }
+//        getPerson();
     }//GEN-LAST:event_previousActionPerformed
+
+    private void edit_first_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_first_nameActionPerformed
+        String r = JOptionPane.showInputDialog(this, "Edit first name:", "First name", JOptionPane.QUESTION_MESSAGE);
+        if (r != null) {
+//            first_name.setText(r);
+            Person person = loadPersons.get(currentIndex);
+            person.setFirstName(r);
+            loadPersons.set(currentIndex, person);
+            getPerson();
+        }
+    }//GEN-LAST:event_edit_first_nameActionPerformed
+
+    private void edit_last_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_last_nameActionPerformed
+        String r = JOptionPane.showInputDialog(this, "Edit last name:", "Last name", JOptionPane.QUESTION_MESSAGE);
+        if (r != null) {
+//            last_name.setText(r);
+            Person person = loadPersons.get(currentIndex);
+            person.setLastName(r);
+            loadPersons.set(currentIndex, person);
+            getPerson();
+        }
+    }//GEN-LAST:event_edit_last_nameActionPerformed
+
+    private void edit_birth_placeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_birth_placeActionPerformed
+        String r = JOptionPane.showInputDialog(this, "Edit birth place:", "Birth place", JOptionPane.QUESTION_MESSAGE);
+        if (r != null) {
+            Person person = loadPersons.get(currentIndex);
+            person.setBirthTown(r);
+            loadPersons.set(currentIndex, person);
+            getPerson();
+        }
+    }//GEN-LAST:event_edit_birth_placeActionPerformed
+
+    private void edit_birth_countryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_birth_countryActionPerformed
+        String r = JOptionPane.showInputDialog(this, "Edit birth country:", "Birth country", JOptionPane.QUESTION_MESSAGE);
+        if (r != null) {
+            Person person = loadPersons.get(currentIndex);
+            person.setBirthCountry(r);
+            loadPersons.set(currentIndex, person);
+            getPerson();
+        }
+    }//GEN-LAST:event_edit_birth_countryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,8 +308,12 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField birth_town;
-    private javax.swing.JTextField birth_year;
+    private javax.swing.JTextField birth_country;
+    private javax.swing.JTextField birth_place;
+    private javax.swing.JButton edit_birth_country;
+    private javax.swing.JButton edit_birth_place;
+    private javax.swing.JButton edit_first_name;
+    private javax.swing.JButton edit_last_name;
     private javax.swing.JMenuItem exit;
     private javax.swing.JTextField first_name;
     private javax.swing.JLabel jLabel1;
@@ -234,7 +333,7 @@ public class View extends javax.swing.JFrame {
 
         first_name.setText(person.firstName);
         last_name.setText(person.lastName);
-        birth_town.setText(person.birthTown);
-        birth_year.setText("" + person.birthYear);
+        birth_place.setText(person.birthTown);
+        birth_country.setText(person.birthCountry);
     }
 }
