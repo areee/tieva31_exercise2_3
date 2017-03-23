@@ -202,32 +202,25 @@ public class View extends javax.swing.JFrame {
         currentIndex++;
         if (currentIndex == loadPersons.size() - 1) {
             next.setEnabled(false);
+        } else if (currentIndex > 0) {
+            previous.setEnabled(true);
         } else {
             next.setEnabled(true);
         }
         getPerson();
-//        if (currentIndex == loadPersons.size() - 1) {
-//            currentIndex = 0;
-//        } else {
-//            currentIndex++;
-//        }
-//        getPerson();
+
     }//GEN-LAST:event_nextActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
         currentIndex--;
         if (currentIndex == 0) {
             previous.setEnabled(false);
+        } else if (currentIndex < loadPersons.size() - 1) {
+            next.setEnabled(true);
         } else {
             previous.setEnabled(true);
         }
-
-//        if (currentIndex == 0) {
-//            currentIndex = loadPersons.size() - 1;
-//        } else {
-//            currentIndex--;
-//        }
-//        getPerson();
+        getPerson();
     }//GEN-LAST:event_previousActionPerformed
 
     private void edit_first_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_first_nameActionPerformed
